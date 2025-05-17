@@ -1,0 +1,20 @@
+{
+    "baseUrl" : "https://stg-app.nexmedis.com",
+    "validUser" : {
+        "companyId" : "official_nexmedis",
+        "email" : "suprajal-qa@nexmedis.com",
+        "password" : "password1234"
+    },
+    "invalidPassword" : {
+        "companyId" : "official_nexmedis",
+        "email" : "suprajal-qa@nexmedis.com",
+        "password" : "wrong_password"
+    },
+    "invalidEmail" : {
+        "companyId" : "official_nexmedis",
+        "email" : "wrong_email@test.com",
+        "password" : "password1234"
+    },
+    "invalidCompanyId" : "wrong_companyid",
+    "invalidEmailFormat" : "wrong_email_format"
+}
