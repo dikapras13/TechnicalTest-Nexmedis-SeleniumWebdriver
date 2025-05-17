@@ -1,6 +1,6 @@
 # TechnicalTest-Nexmedis-SeleniumWebdriver
 
-**Automation Test Project using Selenium WebDriver & Mocha**  
+**Automation Test using Selenium WebDriver & Mocha**  
 Target URL: [https://stg-app.nexmedis.com/](https://stg-app.nexmedis.com/)
 
 ## 🛠️ Requirements
