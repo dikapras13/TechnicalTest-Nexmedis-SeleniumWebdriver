@@ -23,7 +23,6 @@ describe("nexmedis reset password test", function () {
     await loginPage.open(testData.baseUrl);
   });
 
-
   it("TC008 - Reset password dengan format penulisan Email tidak valid", async function () {
     await loginPage.inputCompanyId(testData.validUser.companyId);
     await driver.sleep(2000);
