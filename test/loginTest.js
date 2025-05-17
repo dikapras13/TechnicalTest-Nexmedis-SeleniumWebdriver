@@ -2,6 +2,12 @@ const { Builder, By } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 const LoginPage = require("../pages/loginPage.js");
 const testData = require("../fixtures/testData.json");
+const fs = require("fs");
+const path = require("path");
+const screenshotDir = path.join(__dirname, "../screenshots");
+if (!fs.existsSync(screenshotDir)) {
+  fs.mkdirSync(screenshotDir);
+}
 
 describe("nexmedis login test", function () {
   let driver;
@@ -22,10 +28,13 @@ describe("nexmedis login test", function () {
     await loginPage.open(testData.baseUrl);
   });
 
-  // it("TC001 - Login dengan Credentials  yang valid",async function () {
-  //     await loginPage.companyId(testData.validUser.companyId);
-  //     await loginPage.login(testData.validUser.email,testData.validUser.password);
-  // })
+  it("TC001 - Login dengan Credentials  yang valid", async function () {
+    await loginPage.inputCompanyId(testData.validUser.companyId);
+    await loginPage.login(
+      testData.validUser.email,
+      testData.validUser.password
+    );
+  });
 
   it("TC002 - Login dengan field ID Perusahaan kosong", async function () {
     await loginPage.inputCompanyId(blank);
@@ -83,6 +92,15 @@ describe("nexmedis login test", function () {
   });
 
   afterEach(async function () {
+    const image = await driver.takeScreenshot();
+    fs.writeFileSync(
+      path.join(
+        screenshotDir,
+        `${this.test.title.replace(/[^a-zA-Z0-9-_]/g, "_")}.png`
+      ),
+      image,
+      "base64"
+    );
     await driver.quit();
   });
 });

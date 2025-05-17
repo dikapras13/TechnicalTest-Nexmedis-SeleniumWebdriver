@@ -3,6 +3,12 @@ const chrome = require("selenium-webdriver/chrome");
 const ForgotPasswordPage = require("../pages/forgotpasswordPage.js");
 const LoginPage = require("../pages/loginPage.js");
 const testData = require("../fixtures/testData.json");
+const fs = require("fs");
+const path = require("path");
+const screenshotDir = path.join(__dirname, "../screenshots");
+if (!fs.existsSync(screenshotDir)) {
+  fs.mkdirSync(screenshotDir);
+}
 
 describe("nexmedis reset password test", function () {
   let driver;
@@ -44,6 +50,15 @@ describe("nexmedis reset password test", function () {
   });
 
   afterEach(async function () {
+    const image = await driver.takeScreenshot();
+    fs.writeFileSync(
+      path.join(
+        screenshotDir,
+        `${this.test.title.replace(/[^a-zA-Z0-9-_]/g, "_")}.png`
+      ),
+      image,
+      "base64"
+    );
     await driver.quit();
   });
 });
