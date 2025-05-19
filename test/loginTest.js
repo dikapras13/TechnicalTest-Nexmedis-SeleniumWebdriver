@@ -30,6 +30,7 @@ describe("nexmedis login test", function () {
 
   it("TC001 - Login dengan Credentials  yang valid", async function () {
     await loginPage.inputCompanyId(testData.validUser.companyId);
+    await driver.sleep(3000);
     await loginPage.login(
       testData.validUser.email,
       testData.validUser.password
